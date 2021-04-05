@@ -1,0 +1,29 @@
+.startRow {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+
+#buttonStart {
+    min-width: 10%;
+    padding: 1rem;
+    background-color: #eb6536;
+    text-decoration: none;
+    margin-top: auto;
+    text-align: center;
+    color: #010165;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 1rem;
+    
+  }
+  #buttonStart:hover {
+    opacity: 0.80;
+    box-shadow: 3px 3px 8px 0 #00ffff; 
+  }
+  
+  
+  
+  @media only screen and (max-width: 768px) {
+    #buttonStart { width: 50%; }
+  }

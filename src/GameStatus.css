@@ -1,0 +1,25 @@
+.status-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    
+  }
+  
+  #gameStatus {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    
+  }
+  .wonStatus {
+    visibility : visible;
+    color : #00ffff;
+  }
+  
+  .lostStatus {
+    color : #eb6536;
+    visibility : visible;
+  }
+  .newStatus {
+    visibility: hidden; 
+  }

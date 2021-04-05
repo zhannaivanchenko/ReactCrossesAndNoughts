@@ -1,0 +1,26 @@
+.header {
+    background-color: #00ffff;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
+  .titleRow {
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  .instructionsTitle {
+    display: inline;
+    color: #00ffff;
+    font-size: 1.3rem;
+  }
+  .instructionsRow {
+    margin: 0 auto;
+    width: 30%;
+    /* max-width: 85%; */
+  }
+  
+  .instructionsText {
+    padding: 0.3rem;
+    color: #ffffff;
+  }

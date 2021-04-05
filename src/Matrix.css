@@ -1,0 +1,38 @@
+.playChart {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+  
+  .playChartTable {
+    border-collapse: collapse;
+    display: flex;
+    
+  }
+  
+  .playChartTable td, tr {
+    padding: 2rem;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  table td + td {
+    border-left: 3px solid rgb(236, 233, 233);
+  }
+  
+  table tr + tr td {
+    border-top: 3px solid rgb(236, 233, 233);
+  }
+  
+  td[data-sign='cross'] {
+    background-image : url(./white-cross2.png);
+    background-size:  50%;
+    background-repeat : no-repeat;
+    background-position : center;
+  }
+  td[data-sign='nought'] {
+    background-image : url(./blue-nought.png);
+    background-size:  50%;
+    background-repeat : no-repeat;
+    background-position : center;
+  }
