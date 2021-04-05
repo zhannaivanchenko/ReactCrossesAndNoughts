@@ -1,8 +1,5 @@
 import React from 'react';
 import './StartButton.css';
-import { Matrix } from './Matrix';
-
-// import { GameStatus } from './GameStatus';
 
 export class StartButton extends React.Component {
     constructor(props){
@@ -15,12 +12,8 @@ export class StartButton extends React.Component {
     
     handleButtonClick() {        
        console.log('this.props.getDb=', this.props.getDb);
-        const matrix = this.getDb();
-        for (let i=0; i<matrix.length; i++) {
-            for (let j=0; j<matrix[i].length; j++) {
-                this.setDb(i, j, 0);
-            }
-        }
+       this.props.cleanDb();
+        
     };
 
     render() {

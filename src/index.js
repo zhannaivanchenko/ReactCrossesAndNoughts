@@ -2,17 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import { App } from "./App";
-import { Matrix } from "./Matrix";
+
 import reportWebVitals from './reportWebVitals';
-import { StartButton } from './StartButton';
-import { GameStatus } from './GameStatus';
+
+
 
 ReactDOM.render(
   <React.StrictMode>
     <App />
-    <Matrix />
+    {/* <Matrix />
     <GameStatus />
-    <StartButton />
+    <StartButton /> */}
   </React.StrictMode>,
   document.getElementById('root')
 );
