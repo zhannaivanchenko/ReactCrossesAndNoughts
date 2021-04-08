@@ -24,3 +24,8 @@
     padding: 0.3rem;
     color: #ffffff;
   }
+
+  @media only screen and (max-width: 768px) {
+    .instructions-row { width: 90%; }
+    .instructions-title {width: 90%; }
+  }

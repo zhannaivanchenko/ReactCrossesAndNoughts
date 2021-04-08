@@ -1,9 +1,8 @@
 import './App.css';
-import { ShowHeader } from "./Header";
-import { Matrix } from "./Matrix";
+import { ShowHeader } from "./Components/Header/Header";
+import { Matrix } from "./Components/Matrix/Matrix";
 import React from 'react';
-import { GameStatus } from './GameStatus';
-import { StartButton } from './StartButton';
+
 
 export class App extends React.Component {
   constructor(props) {
@@ -41,9 +40,9 @@ export class App extends React.Component {
           <div>
             <ShowHeader />
           </div>
-          <Matrix getDb={this.getDb.bind(this)} setDb={this.setDb.bind(this)} />
-          <GameStatus />
-          <StartButton cleanDb={this.cleanDb.bind(this)} />
+          <Matrix getDb={this.getDb.bind(this)} setDb={this.setDb.bind(this)}
+          cleanDb={this.cleanDb.bind(this)} />
+        
       </div>
     );
   }

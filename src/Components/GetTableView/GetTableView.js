@@ -1,7 +1,7 @@
 import React from 'react';
 
  export function GetTableView(matrix) {
-    let i = 0;
+    let i = -1;
     let table = matrix.map((row, indexRow) => { 
         let cells = row.map((cell, indexCell) => {
             i++;

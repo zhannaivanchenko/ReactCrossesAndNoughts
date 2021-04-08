@@ -1,8 +1,4 @@
-/* :root {
-    --def-padding: 8px;
-    --def-margin: 8px;
-    --def-font-size: 16px;
-} */
+
 html {
   font-size: 16px;
 }
@@ -14,19 +10,7 @@ body {
   
 }
 
-
-
-
-
-
-
 @media only screen and (max-width: 768px) {
   html { font-size: 20px; }
- 
-  .play-chart { width: 100%; }
-  .status-row { width: 100%; }
-  .instructions-row { width: 90%; }
-  .instructions-title {width: 90%; }
-
 }
 

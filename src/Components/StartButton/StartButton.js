@@ -11,13 +11,15 @@ export class StartButton extends React.Component {
  }    
     
     handleButtonClick() {        
-       console.log('this.props.getDb=', this.props.getDb);
-       this.props.cleanDb();
-        
+        if (!this.props.isHandlerSet) {
+            window.removeEventListener('click', this.props.listenerFunction); }
+        this.props.cleanDb(); 
+        this.props.cleanIsAllNulls();
+        window.addEventListener('click', this.props.listenerFunction);
+        this.props.updateHandlerSet();
     };
 
     render() {
-        console.log('this.props=%o', this.props);
         return (
             <div className='startRow'>
                 <button type='button' id='buttonStart' onClick= { this.handleButtonClick } >
