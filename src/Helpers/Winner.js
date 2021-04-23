@@ -3,9 +3,7 @@ class Winner {
     
         getColumns(matrix) {
             let columnsArray = [];
-            console.log('matrix of columns=', matrix);
             columnsArray = matrix.map((column, i)=> column.map((cell, j)=> matrix[j][i]));
-            console.log('columnsArray=', columnsArray);
             return columnsArray;
         }
           

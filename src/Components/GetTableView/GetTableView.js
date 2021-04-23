@@ -17,9 +17,9 @@ import React from 'react';
     });
     
     return (
-    <table className='playChartTable'> 
-        <tbody>
-            { table }
-        </tbody>
-    </table>);
+        <table className='playChartTable'> 
+            <tbody>
+                { table }
+            </tbody>
+        </table>);
 }

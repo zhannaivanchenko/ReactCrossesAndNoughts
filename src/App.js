@@ -1,51 +1,45 @@
 import './App.css';
 import { ShowHeader } from "./Components/Header/Header";
 import { Matrix } from "./Components/Matrix/Matrix";
-import React from 'react';
+import React, { useState } from 'react';
 
 
-export class App extends React.Component {
-  constructor(props) {
-    super (props);
-    this.state = { db : [
-        [0, 0, 0],
-        [0, 0, 0],
-        [0, 0, 0]
-    ]}  
-    }
-  
-  getDb() {
-    return this.state.db;
-  }
+export function App() {
+  const [db, setDb] = useState([
+      [0, 0, 0],
+      [0, 0, 0],
+      [0, 0, 0]
+    ]);
 
-  setDb(x, y, value) {
-    let db = this.state.db;
-    db[x][y] = value;
-    this.setState({ db });
-  }
+  const getDb = () => {
+    return [...db];
+  };
 
-  cleanDb() {
-    const matrix = this.getDb();
+  const setNewDb = (x, y, value) => {
+    let newDb = [...db];
+    newDb[x][y] = value;
+    setDb( newDb );
+  };
+ 
+  const cleanDb = () => {
+    const matrix = [...db];
         for (let i=0; i<matrix.length; i++) {
             for (let j=0; j<matrix[i].length; j++) {
-                this.setDb(i, j, 0);
+                setNewDb(i, j, 0);
             }
         }
-  }
+  };
 
-
-  render() {
-    return (
+  return (
       <div>
           <div>
             <ShowHeader />
           </div>
-          <Matrix getDb={this.getDb.bind(this)} setDb={this.setDb.bind(this)}
-          cleanDb={this.cleanDb.bind(this)} />
+            <Matrix getDb={getDb} setNewDb={setNewDb} cleanDb={cleanDb} />
         
       </div>
     );
-  }
+  
  
 };
 

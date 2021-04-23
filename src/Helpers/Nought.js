@@ -1,5 +1,3 @@
-
-
 class Nought {
         getNoughtCelllNumber() {
             const min = 0;
