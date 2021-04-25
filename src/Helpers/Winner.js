@@ -1,5 +1,5 @@
 
-class Winner {
+class WinnerCheck {
     
         getColumns(matrix) {
             let columnsArray = [];
@@ -43,4 +43,4 @@ class Winner {
         }    
 }
 
-export const winner = new Winner();
+export const winnerCheck = new WinnerCheck();

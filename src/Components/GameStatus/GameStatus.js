@@ -10,7 +10,7 @@ const getClassName = (sign) => {
 }
 
 const getStatusMessage = (sign, isAllNulls) => {
-    if (isAllNulls === false) {
+    if (isAllNulls === false && sign === '') {
         return "No place to go! Restart the game!"
     } 
     switch(sign) {

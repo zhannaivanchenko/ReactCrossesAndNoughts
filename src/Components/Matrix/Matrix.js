@@ -1,106 +1,93 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Matrix.css';
 import { GetTableView } from "../GetTableView/GetTableView";
 import { nought } from '../../Helpers/Nought';
-import { winner } from '../../Helpers/Winner';
+import { winnerCheck } from '../../Helpers/Winner';
 import { GameStatus } from '../GameStatus/GameStatus';
 import { StartButton } from '../StartButton/StartButton';
 
-export class Matrix extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { 
-            winner : '' ,
-            isAllNulls : true,
-            };
-        this.isHandlerSet = false;
-        this.listenerFunction = '';
-    }
-    checkIfNoPlaceToGo(matrix) {
-        let isAllNull = false;
-        
-        matrix.forEach(row => row.forEach(cell => {
-            if (cell === 0) {
-                isAllNull = true;
-            }  
-        } ));
-        
-        if(!isAllNull){
-            this.setState({ isAllNulls : false });  
-        } else { return; }
-    } 
-
-    cleanIsAllNulls = () => {
-        this.setState({ isAllNulls : true , winner : ''})
-    }
-        
-    updateHandlerSet = () => {
-        this.isHandlerSet = !this.isHandlerSet;
-    }
-
-    handleClick = (e) => {
-        if(!e.target.outerHTML.includes('table') &&
-            e.target.outerHTML.includes('chartCell')) {
-            const size = 3;
-            const cellNumber = e.target.id;
-            const x = Math.floor(cellNumber / size);
-            const y = cellNumber % size;
-            const matrix = this.props.getDb();
-            console.log('matrix before render =', matrix);
-            if ( matrix[x][y] === 0) {
-                this.props.setNewDb(x, y, 1);
-                let winnerSign = winner.checkWinnerCombinations(matrix);
-                this.checkIfGameOver(winnerSign);
-                if (winnerSign === '') { 
-                    this.checkIfNoPlaceToGo(matrix);
-                    if (this.state.isAllNulls) { 
-                    nought.putNought(matrix, this.props.setNewDb);
-                    let winnerSign = winner.checkWinnerCombinations(matrix);
-                    this.checkIfGameOver(winnerSign) 
-                    this.checkIfNoPlaceToGo(matrix);
-            }}}
-            else {
-                alert('This cell is clicked! Click another one!')
-            }    
-         }    
-    }
-
-    checkIfGameOver(winnerSign) {
+export function Matrix(props) {
+    const [ winner, setWinner ] = useState('');
+    const [ isAllNulls, setIsAllNulls ] = useState();
+    
+    useEffect(() => {
+        if (winner === '') {
+            document.addEventListener('click', handleClick);
+            return() => {
+                document.removeEventListener('click', handleClick);
+            }
+        } 
+    }, );
+    
+    const checkIfGameOver = (winnerSign) => {
         if (winnerSign === 'cross') {
-            this.setState({ winner : 'cross'})
-            window.removeEventListener('click', this.listenerFunction);
-            this.isHandlerSet = false;
+            document.removeEventListener('click', handleClick);
+            setWinner('cross');
         }
         if (winnerSign === 'nought') {
-            this.setState({ winner : 'nought'})
-            window.removeEventListener('click', this.listenerFunction);
-            this.isHandlerSet = false;
+            document.removeEventListener('click', handleClick);
+            setWinner('nought');
         }
-        if (winnerSign === '')  {
-            this.setState({ winner : ''})
+        if (winnerSign === '') {
+            setWinner('');
         }
     }
 
-    componentDidMount() {
-        this.listenerFunction = this.handleClick;
-        window.addEventListener('click', this.listenerFunction);
-        this.isHandlerSet = true;
-      }
-    
-    render() {
-        const matrix = this.props.getDb();
-        const playTable = GetTableView(matrix);
+    const checkIfNoPlaceToGo = (matrix) => {
+        let isAllNull = false;
+        matrix.forEach(row => row.forEach(cell => {
+            if (cell === 0) { isAllNull = true;} } ));
+       
+        if (!isAllNull) { setIsAllNulls(false);} 
         
-        return (
+        return isAllNull;
+    } 
+
+    const cleanIsAllNulls = () => {
+        setWinner('');
+        setIsAllNulls(true);
+    }
+
+    const handleClick = ({ target }) => {
+        if (!target.outerHTML.includes('table') && 
+        target.outerHTML.includes('chartCell')) { 
+            const size = 3;
+            const cellNumber = target.id;
+            const x = Math.floor(cellNumber / size);
+            const y = cellNumber % size;
+            const matrix = props.getDb();
+            if ( matrix[x][y] === 0 ) {
+                props.setNewDb(x, y, 1);
+                let winnerSign = winnerCheck.checkWinnerCombinations(matrix);
+                checkIfGameOver(winnerSign);
+                if (winner === '') { 
+                    let isAllNull = checkIfNoPlaceToGo(matrix);
+                    if (!isAllNull) {
+                        document.removeEventListener('click', handleClick);
+                        return;
+                    }
+    
+                    if (isAllNull) { 
+                    nought.putNought(matrix, props.setNewDb);
+                    winnerSign = winnerCheck.checkWinnerCombinations(matrix);
+                    checkIfGameOver(winnerSign);
+                    isAllNull = checkIfNoPlaceToGo(matrix) ;
+                    }
+                }
+            }
+        
+            else {
+                alert('This cell is clicked! Click another one!')
+            }
+        }      
+    }
+    
+   return (
             <div>
                <div className ='playChart' id='chartTable' >
-                    { playTable } 
+                    { GetTableView(props.getDb()) } 
                 </div>
-                <GameStatus winner={this.state.winner} isAllNulls={this.state.isAllNulls} />
-                <StartButton cleanDb={this.props.cleanDb} isHandlerSet={this.isHandlerSet}
-                listenerFunction={this.listenerFunction} cleanIsAllNulls={this.cleanIsAllNulls}
-                updateHandlerSet={this.updateHandlerSet} />
+                <GameStatus winner={ winner } isAllNulls={ isAllNulls } />
+                <StartButton cleanDb={ props.cleanDb } cleanIsAllNulls={ cleanIsAllNulls } />
           </div>)
     }
-
-}
