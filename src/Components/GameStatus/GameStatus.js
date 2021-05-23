@@ -9,8 +9,8 @@ const getClassName = (sign) => {
     }
 }
 
-const getStatusMessage = (sign, isAllNulls) => {
-    if (isAllNulls === false && sign === '') {
+const getStatusMessage = (sign, isSpaceToGo) => {
+    if (isSpaceToGo === false && sign === '') {
         return "No place to go! Restart the game!"
     } 
     switch(sign) {
@@ -23,7 +23,7 @@ const getStatusMessage = (sign, isAllNulls) => {
 export class GameStatus extends React.Component {
     
     render() {
-     const statusMessage = getStatusMessage(this.props.winner, this.props.isAllNulls);
+     const statusMessage = getStatusMessage(this.props.winner, this.props.isSpace);
      const className = getClassName(this.props.winner);
 
      return (

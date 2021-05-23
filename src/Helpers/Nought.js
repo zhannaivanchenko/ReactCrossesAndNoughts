@@ -7,7 +7,7 @@ class Nought {
         }
         putNought(matrix, setDb) {
             const cellNumber = this.getNoughtCelllNumber();
-            const size = 3;
+            const size = matrix.length;
             const x = Math.floor(cellNumber / size);
             const y = cellNumber % size;
         

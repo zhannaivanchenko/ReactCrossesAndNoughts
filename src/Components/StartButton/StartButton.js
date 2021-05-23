@@ -4,8 +4,8 @@ import './StartButton.css';
 export function StartButton(props) {
        
     const handleButtonClick = () => {        
-        props.cleanDb(); 
-        props.cleanIsAllNulls();
+        props.cleanDb();
+        props.cleanWinner();
     };
 
     return (
