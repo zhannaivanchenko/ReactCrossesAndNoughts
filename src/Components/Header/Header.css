@@ -19,7 +19,6 @@
   .instructionsRow {
     margin: 0 auto;
     width: 30%;
-    /* max-width: 85%; */
   }
   
   .instructionsText {
@@ -28,6 +27,10 @@
   }
 
   @media only screen and (max-width: 768px) {
-    .instructions-row { width: 90%; }
-    .instructions-title {width: 90%; }
+    .instructionsRow { width: 90%; }
+    .instructionsTitle {width: 90%; }
+  }
+  @media only screen and (min-width: 769px) and (max-width: 1440px) {
+    .instructionsRow { width: 70%; }
+    .instructionsTitle {width: 70%; }
   }

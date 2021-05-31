@@ -38,5 +38,5 @@
   }
 
   @media only screen and (max-width: 768px) { 
-    .play-chart { width: 100%; }
+    .playChart { width: 100%; }
   }
