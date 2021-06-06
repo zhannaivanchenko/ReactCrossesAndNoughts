@@ -7,7 +7,6 @@
   .playChartTable {
     border-collapse: collapse;
     display: flex;
-    
   }
   
   .playChartTable td, tr {

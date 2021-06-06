@@ -25,9 +25,13 @@ export function App() {
 
   const putCross = (x, y) => {
     const isCellEmpty = db[x][y] === 0;
-    if (!isCellEmpty) { alert('This cell is clicked! Click another one!') }
-    if (isCellEmpty) {
+    if (!isCellEmpty) {
+      alert('This cell is clicked! Click another one!');
+      return false;
+    }
+    else {
       setNewDb(x, y, 1);
+      return true;
     }
   }
 

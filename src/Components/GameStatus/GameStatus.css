@@ -2,7 +2,6 @@
     display: flex;
     justify-content: center;
     margin-top: 2rem;
-    
   }
   
   #gameStatus {
@@ -12,16 +11,13 @@
     
   }
   .wonStatus {
-    /* visibility : visible; */
     color : #00ffff;
   }
   
   .lostStatus {
     color : #eb6536;
-    /* visibility : visible; */
   }
   .newStatus {
-    /* visibility: hidden;  */
     color: rgb(236, 233, 233);
   }
 

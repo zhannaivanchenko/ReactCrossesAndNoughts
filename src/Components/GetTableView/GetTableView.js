@@ -1,32 +1,38 @@
 import React from 'react';
 
- export function GetTableView(props) {
+function CrossAndNoughtBody({ matrix, winner, handleClick }) {
+    return matrix.map((row, indexRow) => (
+        <tr className='chartRow' key={`${indexRow}`}>
+            {row.map((cell, indexCell) => (
+               <td 
+               className='chartCell' 
+               id={`${indexRow}_${indexCell}`}
+               key={`${indexRow}_${indexCell}`}
+               onClick={winner === '' ? handleClick : undefined}
+               data-x={indexRow} 
+               data-y={indexCell}
+               data-sign={
+                   cell === 1 ? 'cross' :
+                   cell === 2 ? 'nought' : 0}
+           ></td>))}
+        </tr> 
+    ))
+}
+
+export function GetTableView(props) {
     const { matrix, winner, handleClick } = props;
-    let i = 1;
-    let table = matrix.map((row, indexRow) => { 
-        let cells = row.map((cell, indexCell) => {
-            i++;
-            return <td className='chartCell' id={`${i}`} key={`${i}`}  
-            onClick={ winner === '' ? handleClick : undefined } 
-            data-x={indexRow} data-y={indexCell} 
-            data-sign={ 
-                cell === 1 ? 'cross' :
-                cell === 2 ? 'nought' : 0 } 
-                ></td>;
-        })
-       const trs = (
-        <tr className='chartRow' key={`${i}`}>
-                { (cells) }
-        </tr>)
-    return trs;
-    });
     
     return (
-        <div className ='playChart' id='chartTable' >
-            <table className='playChartTable'> 
+        <div className='playChart' id='chartTable' >
+            <table className='playChartTable'>
                 <tbody>
-                    { table }
+                    <CrossAndNoughtBody 
+                        matrix={matrix}
+                        winner={winner}
+                        handleClick={handleClick}
+                    />
                 </tbody>
             </table>
-        </div>);
+        </div>
+    );
 }
